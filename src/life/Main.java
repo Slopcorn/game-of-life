@@ -1,26 +1,19 @@
 package life;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // For now, this will simply be a printout of a possible
-        // initial state.
-
+        // Read in the size of the playing field and the seed.
         int n    = scanner.nextInt();
         int seed = scanner.nextInt();
-        Random random = new Random(seed);
 
-        // This loop prints an initial state.
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                System.out.print(random.nextBoolean() ? 'O' : ' ');
-            }
-            System.out.println();   // newline
-        }
+        // Create the world.
+        Universe universe = new Universe(Generator.generate(n, seed));
 
+        // Printout the world.
+        System.out.println(universe);
     }
 }
