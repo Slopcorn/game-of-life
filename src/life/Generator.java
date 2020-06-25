@@ -3,7 +3,7 @@ package life;
 import java.util.Random;
 
 public class Generator {
-    static boolean[][] generate(int n, int seed) {
+    static boolean[][] generate(int n, long seed) {
         boolean[][] world = new boolean[n][n];
         Random random = new Random(seed);
 
