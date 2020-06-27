@@ -3,8 +3,18 @@ package life;
 public class Universe {
     boolean[][] state;
 
+    private int alive;
+    private int generation;
+
     public Universe(boolean[][] state) {
         this.state = state;
+
+        alive = 0;
+        for (boolean[] row : state) for (boolean cell : row) {
+            alive = cell ? alive + 1 : alive;
+        }
+
+        generation = 1;
     }
 
     public void iterate() {
@@ -16,13 +26,16 @@ public class Universe {
                 if (state[i][j]) {
                     // If we are alive, survive if 2 or 3 neigbours.
                     next[i][j] = neighbours == 2 || neighbours == 3;
+                    alive = next[i][j] ? alive : alive - 1;
                 } else {
                     // If we are dead, spring to life if 3 neighbours.
                     next[i][j] = neighbours == 3;
+                    alive = next[i][j] ? alive + 1 : alive;
                 }
             }
         } // for end
 
+        generation++;
         state = next;
     }
 
@@ -64,6 +77,9 @@ public class Universe {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append("Generation #").append(generation).append('\n');
+        sb.append("Alive: ").append(alive).append("\n\n");
+
         for (boolean[] row : state) {
             for (boolean b : row) {
                 sb.append(b ? 'O' : ' ');

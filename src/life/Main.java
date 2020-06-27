@@ -1,24 +1,39 @@
 package life;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int  n    = scanner.nextInt();      // Size of the field
-        long seed = scanner.nextLong();     // The random seed
-        int  gens = scanner.nextInt();      // How many generations
+        // Get field size.
+        int  n    = scanner.nextInt();
 
         // Create the world.
-        Universe universe = new Universe(Generator.generate(n, seed));
+        Universe universe = new Universe(Generator.generate(n));
 
-        // Simulate changes
-        for (int i = 0; i < gens; i++) {
-            universe.iterate();
+        // Simulate changes for 25 turns
+        for (int i = 0; i < 10; i++) {
+            System.out.println(universe);       // Print state
+            universe.iterate();                 // Process the next state
+            // Try to pause before next iter
+            try {
+                Thread.sleep(200L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            clearConsole();                     // Clear the console for the next state
         }
+    }
 
-        // Printout the world.
-        System.out.println(universe);
+    private static void clearConsole() {
+        try {
+            if (System.getProperty("os.name").contains("Windows"))
+                new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
+            else
+                Runtime.getRuntime().exec("clear");
+        } catch (IOException | InterruptedException ignored) { }
+
     }
 }
