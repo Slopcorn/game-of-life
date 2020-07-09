@@ -1,6 +1,7 @@
 package life;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Random;
 
 public class Universe extends JPanel {
@@ -10,14 +11,27 @@ public class Universe extends JPanel {
     private int generation = 1;
 
     public Universe() {
-        // Let the game field be size 20 by default.
-        state = generate(20);
+        // Generate game field.
+        state = generate();
         // Find how many are alive.
         for (boolean[] row : state) for (boolean cell : row) if (cell) alive++;
 
         // Make the size as it needs to be to fit the game field.
         // Each square is 20x20 pixels by size.
-        setSize(400, 400);
+        setPreferredSize(new Dimension(400, 400));
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        for (int i = 0; i < 20; i++) for (int j = 0; j < 20; j++) {
+            if (state[i][j]) {
+                g.setColor(Color.BLACK);
+            } else {
+                g.setColor(Color.WHITE);
+            }
+            g.fillRect(i * 20, j * 20, 20, 20);
+        }
     }
 
     public void iterate() {
@@ -92,7 +106,8 @@ public class Universe extends JPanel {
         return sb.toString();
     }
 
-    private static boolean[][] generate(int n) {
+    private static boolean[][] generate() {
+        int n = 20; // Game field size is 20.
         boolean[][] world = new boolean[n][n];
         Random random = new Random();
 

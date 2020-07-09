@@ -27,6 +27,7 @@ public class GameOfLife extends JFrame {
         Universe universe = new Universe();
         universe.setName("GameWorld");
         panel.add(universe);
+        panel.repaint();
 
         // Display the interface
         setVisible(true);
