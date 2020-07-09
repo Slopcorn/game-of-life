@@ -6,7 +6,7 @@ public class GameOfLife extends JFrame {
     public GameOfLife() {
         super("Game of Life");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(300, 300);
+        setSize(500, 500);
 
         // Main panel
         JPanel panel = new JPanel();
@@ -22,6 +22,10 @@ public class GameOfLife extends JFrame {
 
         generation.setText("generation");
         alive.setText("alive");
+
+        // Adding the game field itself
+        GameField gameField = new GameField();
+        panel.add(gameField);
 
 
         setVisible(true);
