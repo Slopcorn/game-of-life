@@ -34,6 +34,11 @@ public class GameOfLife extends JFrame {
 
         // Program loop
         for (int i = 0; i < 200; i++) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             universe.iterate();
             generation.setText("Generation #" + universe.getGeneration());
             alive.setText("Alive: " + universe.getAlive());
