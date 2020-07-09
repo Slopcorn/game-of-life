@@ -20,14 +20,15 @@ public class GameOfLife extends JFrame {
         panel.add(generation);
         panel.add(alive);
 
-        generation.setText("generation");
-        alive.setText("alive");
+        generation.setText("Generation #1");
+        alive.setText("Alive: 0");
 
         // Adding the game field itself
-        GameField gameField = new GameField();
-        panel.add(gameField);
+        Universe universe = new Universe();
+        universe.setName("GameWorld");
+        panel.add(universe);
 
-
+        // Display the interface
         setVisible(true);
     }
 }
