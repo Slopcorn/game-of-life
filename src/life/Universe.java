@@ -6,24 +6,18 @@ import java.util.Random;
 public class Universe extends JPanel {
     boolean[][] state;
 
-    private int alive;
-    private int generation;
+    private int alive      = 0;
+    private int generation = 1;
 
     public Universe() {
+        // Let the game field be size 20 by default.
+        state = generate(20);
+        // Find how many are alive.
+        for (boolean[] row : state) for (boolean cell : row) if (cell) alive++;
+
         // Make the size as it needs to be to fit the game field.
         // Each square is 20x20 pixels by size.
         setSize(400, 400);
-    }
-
-    public Universe(boolean[][] state) {
-        this.state = state;
-
-        alive = 0;
-        for (boolean[] row : state) for (boolean cell : row) {
-            alive = cell ? alive + 1 : alive;
-        }
-
-        generation = 1;
     }
 
     public void iterate() {
@@ -98,7 +92,7 @@ public class Universe extends JPanel {
         return sb.toString();
     }
 
-    static boolean[][] generate(int n) {
+    private static boolean[][] generate(int n) {
         boolean[][] world = new boolean[n][n];
         Random random = new Random();
 
