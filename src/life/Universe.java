@@ -21,6 +21,14 @@ public class Universe extends JPanel {
         setPreferredSize(new Dimension(400, 400));
     }
 
+    public int getAlive() {
+        return alive;
+    }
+
+    public int getGeneration() {
+        return generation;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

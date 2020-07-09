@@ -31,5 +31,13 @@ public class GameOfLife extends JFrame {
 
         // Display the interface
         setVisible(true);
+
+        // Program loop
+        for (int i = 0; i < 200; i++) {
+            universe.iterate();
+            generation.setText("Generation #" + universe.getGeneration());
+            alive.setText("Alive: " + universe.getAlive());
+            panel.repaint();
+        }
     }
 }
