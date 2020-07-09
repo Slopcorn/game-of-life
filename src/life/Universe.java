@@ -1,10 +1,19 @@
 package life;
 
-public class Universe {
+import javax.swing.*;
+import java.util.Random;
+
+public class Universe extends JPanel {
     boolean[][] state;
 
     private int alive;
     private int generation;
+
+    public Universe() {
+        // Make the size as it needs to be to fit the game field.
+        // Each square is 20x20 pixels by size.
+        setSize(400, 400);
+    }
 
     public Universe(boolean[][] state) {
         this.state = state;
@@ -87,5 +96,18 @@ public class Universe {
             sb.append('\n');
         }
         return sb.toString();
+    }
+
+    static boolean[][] generate(int n) {
+        boolean[][] world = new boolean[n][n];
+        Random random = new Random();
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                world[i][j] = random.nextBoolean();
+            }
+        }
+
+        return world;
     }
 }
