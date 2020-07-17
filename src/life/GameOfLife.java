@@ -20,8 +20,8 @@ public class GameOfLife extends JFrame {
         JLabel alive      = new JLabel();
         generation.setName("GenerationLabel");
         alive.setName("AliveLabel");
-        generation.setBounds(10, 0, 200, 20);
-        alive.setBounds(10, 25, 200, 20);
+        generation.setBounds(50, 5, 200, 20);
+        alive.setBounds(50, 25, 200, 20);
         panel.add(generation);
         panel.add(alive);
 
