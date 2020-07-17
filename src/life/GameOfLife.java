@@ -20,9 +20,6 @@ public class GameOfLife extends JFrame {
         panel.add(generation);
         panel.add(alive);
 
-        generation.setText("Generation #1");
-        alive.setText("Alive: 0");
-
         // Adding the game field itself
         Universe universe = new Universe();
         universe.setName("GameWorld");
@@ -34,15 +31,15 @@ public class GameOfLife extends JFrame {
 
         // Program loop
         for (int i = 0; i < 200; i++) {
+            generation.setText("Generation #" + universe.getGeneration());
+            alive.setText("Alive: " + universe.getAlive());
+            panel.repaint();
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             universe.iterate();
-            generation.setText("Generation #" + universe.getGeneration());
-            alive.setText("Alive: " + universe.getAlive());
-            panel.repaint();
         }
     }
 }
