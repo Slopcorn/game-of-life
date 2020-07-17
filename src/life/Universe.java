@@ -7,15 +7,12 @@ import java.util.Random;
 public class Universe extends JPanel {
     boolean[][] state;
 
-    private int alive      = 0;
-    private int generation = 1;
+    private int alive;
+    private int generation;
 
     public Universe() {
         // Generate game field.
-        state = generate();
-        // Find how many are alive.
-        for (boolean[] row : state) for (boolean cell : row) if (cell) alive++;
-
+        reset();
         // Make the size as it needs to be to fit the game field.
         // Each square is 20x20 pixels by size.
         setPreferredSize(new Dimension(400, 400));
@@ -28,6 +25,13 @@ public class Universe extends JPanel {
 
     public int getGeneration() {
         return generation;
+    }
+
+    public void reset() {
+        alive = 0;
+        generation = 1;
+        state = generate();     // Generate game field.
+        for (boolean[] row : state) for (boolean cell : row) if (cell) alive++; // Find how many are alive.
     }
 
     @Override
