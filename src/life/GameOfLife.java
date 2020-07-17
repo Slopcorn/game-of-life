@@ -1,8 +1,12 @@
 package life;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GameOfLife extends JFrame {
+    boolean playing = true;
+
     public GameOfLife() {
         super("Game of Life");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,20 +46,34 @@ public class GameOfLife extends JFrame {
         panel.add(pauseButton);
         panel.add(resetButton);
 
+        // Adding functionality to buttons
+        pauseButton.addActionListener(e -> {
+            playing ^= true;    // Flips state of playing boolean
+        });
+
         // Display the interface
         setVisible(true);
 
         // Program loop
         for (int i = 0; i < 200; i++) {
-            generation.setText("Generation #" + universe.getGeneration());
-            alive.setText("Alive: " + universe.getAlive());
-            panel.repaint();
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if (playing) {
+                generation.setText("Generation #" + universe.getGeneration());
+                alive.setText("Alive: " + universe.getAlive());
+                panel.repaint();
+                sleep(500);
+                universe.iterate();
+            } else {
+                sleep(500);
             }
-            universe.iterate();
+        }
+    }
+
+    // Method to reduce complexity in code above
+    private void sleep(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
