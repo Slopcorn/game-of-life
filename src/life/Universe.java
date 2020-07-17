@@ -14,8 +14,8 @@ public class Universe extends JPanel {
         // Generate game field.
         reset();
         // Make the size as it needs to be to fit the game field.
-        // Each square is 20x20 pixels by size.
-        setPreferredSize(new Dimension(400, 400));
+        // Each square is 15x15 pixels by size.
+        setPreferredSize(new Dimension(600, 600));
         setBackground(Color.BLACK);
     }
 
@@ -37,13 +37,13 @@ public class Universe extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (int i = 0; i < 20; i++) for (int j = 0; j < 20; j++) {
+        for (int i = 0; i < 40; i++) for (int j = 0; j < 40; j++) {
             if (state[i][j]) {
                 g.setColor(Color.BLACK);
             } else {
                 g.setColor(Color.WHITE);
             }
-            g.fillRect(i * 20 + 1, j * 20 + 1, 18, 18);
+            g.fillRect(i * 15 + 1, j * 15 + 1, 13, 13);
         }
     }
 
@@ -120,7 +120,7 @@ public class Universe extends JPanel {
     }
 
     private static boolean[][] generate() {
-        int n = 20; // Game field size is 20.
+        int n = 40; // Game field size is 40.
         boolean[][] world = new boolean[n][n];
         Random random = new Random();
 

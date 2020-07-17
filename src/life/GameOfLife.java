@@ -1,8 +1,6 @@
 package life;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class GameOfLife extends JFrame {
     boolean playing = true;
@@ -11,12 +9,12 @@ public class GameOfLife extends JFrame {
     public GameOfLife() {
         super("Game of Life");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 500);
+        setSize(700, 700);
         setResizable(false);
 
         // Main panel
         JPanel panel = new JPanel();
-        panel.setSize(500, 500);
+        panel.setSize(700, 700);
         panel.setLayout(null);
         add(panel);
 
@@ -33,7 +31,7 @@ public class GameOfLife extends JFrame {
         // Adding the game field itself
         Universe universe = new Universe();
         universe.setName("GameWorld");
-        universe.setBounds(50, 50, 400, 400);
+        universe.setBounds(50, 50, 600, 600);
         panel.add(universe);
         panel.repaint();
 
@@ -42,8 +40,8 @@ public class GameOfLife extends JFrame {
         JButton resetButton = new JButton("Reset");
         pauseButton.setName("PlayToggleButton");
         resetButton.setName("ResetButton");
-        pauseButton.setBounds(300, 25, 70, 20);
-        resetButton.setBounds(380, 25, 70, 20);
+        pauseButton.setBounds(500, 25, 70, 20);
+        resetButton.setBounds(580, 25, 70, 20);
         panel.add(pauseButton);
         panel.add(resetButton);
 
@@ -70,9 +68,9 @@ public class GameOfLife extends JFrame {
                 generation.setText("Generation #" + universe.getGeneration());
                 alive.setText("Alive: " + universe.getAlive());
                 panel.repaint();
-                sleep(200);
+                sleep(250);
                 universe.iterate();
-            } else sleep(200);  // We are paused
+            } else sleep(250);  // We are paused
         }
     }
 
