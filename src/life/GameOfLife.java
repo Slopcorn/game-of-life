@@ -59,7 +59,7 @@ public class GameOfLife extends JFrame {
         setVisible(true);
 
         // Program loop
-        for (int i = 0; i < 200; i++) {
+        while (true) {
             // Handle resets
             if (resetting) {
                 resetting = false;
@@ -70,9 +70,9 @@ public class GameOfLife extends JFrame {
                 generation.setText("Generation #" + universe.getGeneration());
                 alive.setText("Alive: " + universe.getAlive());
                 panel.repaint();
-                sleep(500);
+                sleep(200);
                 universe.iterate();
-            } else sleep(500);  // We are paused
+            } else sleep(200);  // We are paused
         }
     }
 
