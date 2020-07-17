@@ -32,6 +32,16 @@ public class GameOfLife extends JFrame {
         panel.add(universe);
         panel.repaint();
 
+        // Adding buttons for pause and reset
+        JButton pauseButton = new JButton("Pause");
+        JButton resetButton = new JButton("Reset");
+        pauseButton.setName("PlayToggleButton");
+        resetButton.setName("ResetButton");
+        pauseButton.setBounds(300, 25, 70, 20);
+        resetButton.setBounds(380, 25, 70, 20);
+        panel.add(pauseButton);
+        panel.add(resetButton);
+
         // Display the interface
         setVisible(true);
 
