@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 public class GameOfLife extends JFrame {
     boolean playing = true;
+    boolean resetting = false;
 
     public GameOfLife() {
         super("Game of Life");
@@ -50,21 +51,28 @@ public class GameOfLife extends JFrame {
         pauseButton.addActionListener(e -> {
             playing ^= true;    // Flips state of playing boolean
         });
+        resetButton.addActionListener(e -> {
+            resetting = true;   // Allows the program loop to reset the game instead of iterating
+        });
 
         // Display the interface
         setVisible(true);
 
         // Program loop
         for (int i = 0; i < 200; i++) {
+            // Handle resets
+            if (resetting) {
+                resetting = false;
+                universe.reset();
+            }
+            // Game loop
             if (playing) {
                 generation.setText("Generation #" + universe.getGeneration());
                 alive.setText("Alive: " + universe.getAlive());
                 panel.repaint();
                 sleep(500);
                 universe.iterate();
-            } else {
-                sleep(500);
-            }
+            } else sleep(500);  // We are paused
         }
     }
 
