@@ -19,6 +19,7 @@ public class Universe extends JPanel {
         // Make the size as it needs to be to fit the game field.
         // Each square is 20x20 pixels by size.
         setPreferredSize(new Dimension(400, 400));
+        setBackground(Color.BLACK);
     }
 
     public int getAlive() {
@@ -38,7 +39,7 @@ public class Universe extends JPanel {
             } else {
                 g.setColor(Color.WHITE);
             }
-            g.fillRect(i * 20, j * 20, 20, 20);
+            g.fillRect(i * 20 + 1, j * 20 + 1, 18, 18);
         }
     }
 
